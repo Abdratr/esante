@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion Admin - eSante Mali</title>
+
+    <link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+            background:url('{{ asset("images/fond.png") }}')
+            no-repeat center center fixed;
+            background-size:cover;
+            min-height:100vh;
+            overflow-x:hidden;
+        }
+
+        .overlay{
+            background:rgba(0,0,0,0.65);
+            min-height:100vh;
+            padding:80px 20px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .card{
+            background:rgba(255,255,255,0.10);
+            backdrop-filter:blur(15px);
+            -webkit-backdrop-filter:blur(15px);
+            padding:40px;
+            border-radius:20px;
+            width:450px;
+            color:white;
+            text-align:center;
+            box-shadow:0 8px 32px rgba(0,0,0,0.3);
+            animation:fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(40px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        .logos{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        }
+
+        .logos img{
+            height:70px;
+            background:rgba(255,255,255,0.9);
+            padding:8px;
+            border-radius:10px;
+        }
+
+        h1{
+            color:#00e6b8;
+            font-size:26px;
+        }
+
+        .input-group{
+            margin:15px 0;
+            position:relative;
+        }
+
+        .input-group i{
+            position:absolute;
+            left:12px;
+            top:50%;
+            transform:translateY(-50%);
+            color:#00e6b8;
+        }
+
+        input{
+            width:100%;
+            padding:12px 12px 12px 38px;
+            border:none;
+            border-radius:8px;
+            outline:none;
+        }
+
+        .btn{
+            width:100%;
+            padding:12px;
+            margin-top:15px;
+            border:none;
+            border-radius:8px;
+            background:linear-gradient(135deg,#00c9a7,#00a8ff);
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        .btn:hover{
+            transform:scale(1.03);
+        }
+
+        .links{
+            margin-top:20px;
+        }
+
+        .links a{
+            display:block;
+            margin:8px 0;
+            color:#00e6b8;
+            text-decoration:none;
+            font-size:14px;
+        }
+
+        .links a:hover{
+            text-decoration:underline;
+        }
+
+        .back{
+            margin-top:20px;
+        }
+
+        .back a{
+            color:white;
+            text-decoration:none;
+            font-size:14px;
+        }
+
+        .back a:hover{
+            color:#00e6b8;
+        }
+
+        .error-box{
+            background:#dc3545;
+            color:white;
+            padding:10px;
+            border-radius:8px;
+            margin-bottom:15px;
+        }
+
+        @media(max-width:500px){
+            .card{
+                width:100%;
+            }
+
+            .logos{
+                flex-direction:column;
+                gap:10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="card">
+
+        <div class="logos">
+            <img src="{{ asset('images/esante.png') }}"
+                 alt="eSante Mali">
+
+            <h1>Connexion</h1>
+
+            <img src="{{ asset('images/mali.jpeg') }}"
+                 alt="Ministère de la Santé">
+        </div>
+
+        {% if error %}
+            <div class="error-box">
+                Email ou mot de passe incorrect.
+            </div>
+        {% endif %}
+
+        <form method="post">
+
+            <input type="hidden"
+                   name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}">
+
+            <div class="input-group">
+                <i class="fa-solid fa-envelope"></i>
+
+                <input
+                    type="email"
+                    name="_username"
+                    value="{{ last_username }}"
+                    placeholder="Email administrateur"
+                    required
+                    autofocus
+                >
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+
+                <input
+                    type="password"
+                    name="_password"
+                    placeholder="Mot de passe"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn">
+                <i class="fa-solid fa-shield-halved"></i>
+                Se connecter
+            </button>
+
+        </form>
+
+        <div class="links">
+
+            <a href="{{ path('admin_register') }}">
+                <i class="fa-solid fa-user-plus"></i>
+                Créer un compte admin
+            </a>
+
+            <a href="{{ path('admin_forgot_password') }}">
+                <i class="fa-solid fa-key"></i>
+                Mot de passe oublié ?
+            </a>
+
+        </div>
+
+        <div class="back">
+            <a href="{{ path('admin_index') }}">
+                <i class="fa-solid fa-arrow-left"></i>
+                Retour à l’accueil
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

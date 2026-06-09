@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>eSanté Mali - Hôpitaux</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+            /* 🌄 Fond fixe */
+            background: url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* 🌫️ Overlay global */
+        .overlay {
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        /* 🧊 Glass container */
+        .container {
+            width: 100%;
+            max-width: 950px;
+            padding: 40px;
+            border-radius: 16px;
+
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        /* 🔷 Header logos */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            height: 70px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        /* 🏥 Title */
+        h1 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        /* 👋 Welcome */
+        .welcome {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* 📦 Glass boxes */
+        .box {
+            margin-top: 20px;
+            padding: 18px;
+
+            background: rgba(255, 255, 255, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .description {
+            line-height: 1.7;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* 🔐 Button */
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 22px;
+
+            background: rgba(39, 174, 96, 0.8);
+            color: white;
+
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn:hover {
+            background: rgba(39, 174, 96, 1);
+            transform: scale(1.05);
+        }
+
+        /* 🎯 Icônes */
+        .icon {
+            margin-right: 8px;
+            color: #a8ffce;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="container">
+
+        <!-- LOGOS -->
+        <div class="header">
+            <img src="{{ asset('images/mali.jpeg') }}" class="logo" alt="Ministère de la Santé">*
+                    <h1>
+            <i class="fa-solid fa-hospital"></i>
+            Plateforme eSanté Mali
+        </h1>
+            <img src="{{ asset('images/esante.png') }}" class="logo" alt="eSanté Mali">
+        </div>
+        <p class="welcome">
+            <i class="fa-solid fa-user-tie icon"></i>
+            Bienvenue le Directeur de l’hôpital
+        </p>
+
+        <div class="box">
+            <p class="description">
+                <i class="fa-solid fa-circle-info icon"></i>
+                eSanté Mali est une plateforme numérique dédiée à la modernisation des hôpitaux publics.
+                Elle centralise les données médicales, améliore la gestion des patients et facilite les services hospitaliers.
+            </p>
+        </div>
+
+        <div class="box">
+            <p class="description">
+                <i class="fa-solid fa-bolt icon"></i>
+                Elle permet aux hôpitaux d’être plus rapides, plus efficaces et plus transparents dans la gestion des soins.
+            </p>
+        </div>
+
+        <p class="description" style="text-align:center;">
+            <i class="fa-solid fa-lock icon"></i>
+            Accédez à votre espace sécurisé en vous connectant
+        </p>
+
+        <div style="text-align:center;">
+<a href="{{ path('app_login') }}" class="btn">
+    <i class="fa-solid fa-right-to-bracket"></i>
+    Se connecter
+</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

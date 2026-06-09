@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription Hôpital - eSanté Mali</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+.btn-back{
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.btn-back i{
+    margin-right: 8px;
+}
+
+.btn-back:hover{
+    background: #3498db;
+    transform: translateX(-5px);
+    box-shadow: 0 10px 25px rgba(52,152,219,0.5);
+}
+
+.btn-back:active{
+    transform: scale(0.97);
+}
+        .overlay {
+            min-height: 100vh;
+            background: rgba(0,0,0,0.65);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            padding: 35px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(18px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 65px;
+            background: rgba(255,255,255,0.12);
+            padding: 6px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            background: rgba(255,255,255,0.12);
+            font-size: 13px;
+        }
+
+        .tab.active {
+            background: rgba(39,174,96,0.8);
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.10);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a8ffce;
+        }
+
+        input, select {
+            width: 100%;
+            margin-top: 8px;
+            padding: 10px 10px 10px 35px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        input[type="file"] {
+            padding-left: 10px;
+        }
+
+        .preview {
+            margin-top: 10px;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid white;
+            display: none;
+        }
+
+        .required::after {
+            content: " *";
+            color: #ff6b6b;
+        }
+
+        .optional::after {
+            content: " (optionnel)";
+            color: #bbb;
+            font-weight: normal;
+        }
+
+        .btns {
+            margin-top: 20px;
+            display: none;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+
+        .green { background: #27ae60; }
+        .blue { background: #3498db; }
+        .red { background: #e74c3c; }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <img src="{{ asset('images/mali.jpeg') }}" class="logo">
+            <h1>
+        Inscription 
+    </h1>
+        <img src="{{ asset('images/esante.png') }}" class="logo">
+    </div>
+    <!-- TABS -->
+    <div class="tabs">
+        <div class="tab active" onclick="show(0)">🏥 Identification</div>
+        <div class="tab" onclick="show(1)">📍 Localisation</div>
+        <div class="tab" onclick="show(2)">👨‍⚕️ Direction</div>
+        <div class="tab" onclick="show(3)">🩺 Services</div>
+        <div class="tab" onclick="show(4)">⚙️ Ressources</div>
+        <div class="tab" onclick="show(5)">📑 Validation</div>
+    </div>
+
+    <form>
+
+        <!-- 1 IDENTIFICATION -->
+        <div class="section active">
+
+            <label class="required">🏥 Nom de l’hôpital</label>
+            <div class="input-group">
+                <i class="fa-solid fa-hospital"></i>
+                <input required>
+            </div>
+
+            <label class="required">🏢 Type</label>
+            <select required>
+                <option>CHU</option>
+                <option>Hôpital régional</option>
+                <option>Hôpital de district</option>
+                <option>Centre de santé</option>
+            </select>
+
+            <label class="required">📜 Statut juridique</label>
+            <input required>
+
+            <label class="required">🏥 Logo de l’hôpital</label>
+<input type="file" id="logoInput" accept="image/*" required onchange="previewLogo(event)">
+<img id="logoPreview" class="preview">
+
+        </div>
+
+        <!-- 2 LOCALISATION -->
+        <div class="section">
+
+            <label class="required">🌍 Région</label>
+            <input required>
+
+            <label class="required">📍 Adresse</label>
+            <input required>
+
+            <label class="optional">🧭 Latitude</label>
+            <input>
+
+            <label class="optional">🧭 Longitude</label>
+            <input>
+
+        </div>
+
+        <!-- 3 DIRECTION -->
+        <div class="section">
+
+            <label class="required">👨‍⚕️ Nom directeur</label>
+            <input required>
+
+            <label class="required">🎂 Date de naissance</label>
+            <input type="date" required>
+
+            <label class="optional">🏠 Domicile</label>
+            <input>
+
+            <label class="required">📞 Téléphone</label>
+            <input required>
+
+            <label class="required">📧 Email</label>
+            <input type="email" required>
+
+            <label class="required">🔐 Mot de passe</label>
+            <input type="password" required>
+
+            <label class="required">🔐 Confirmer mot de passe</label>
+            <input type="password" required>
+
+            <label class="required">📸 Photo du directeur </label>
+<input type="file" id="photoInput" accept="image/*" required onchange="previewPhoto(event)">
+<img id="photoPreview" class="preview">
+
+        </div>
+
+        <!-- 4 SERVICES -->
+        <div class="section">
+
+            <label class="required">🩺 Services disponibles</label>
+
+            <label><input type="checkbox" class="service"> 🚑 Urgences</label>
+            <label><input type="checkbox" class="service"> 🏥 Chirurgie</label>
+            <label><input type="checkbox" class="service"> 👶 Pédiatrie</label>
+            <label><input type="checkbox" class="service"> 🤰 Gynécologie</label>
+            <label><input type="checkbox" class="service"> 🧪 Laboratoire</label>
+            <label><input type="checkbox" class="service"> 📡 Imagerie médicale</label>
+            <label><input type="checkbox" class="service"> 💊 Pharmacie</label>
+
+            <label>
+                <input type="checkbox" id="allServices" onchange="toggleAllServices(this)">
+                🏥 Tous les services disponibles
+            </label>
+
+        </div>
+
+        <!-- 5 RESSOURCES -->
+        <div class="section">
+
+            <h3>👥 Ressources humaines</h3>
+
+            <label>👨‍⚕️ Médecins</label>
+            <input>
+
+            <label>👩‍⚕️ Infirmiers</label>
+            <input>
+
+            <label>👶 Sage-femmes</label>
+            <input>
+
+            <label>🔬 Techniciens</label>
+            <input>
+
+            <label>🧑‍💼 Personnel administratif</label>
+            <input>
+
+            <h3>🏗️ Infrastructures</h3>
+
+            <label>🏢 Bâtiments</label>
+            <input>
+
+            <label>🛏️ Lits hospitaliers</label>
+            <input>
+
+            <label>🏥 Blocs opératoires</label>
+            <input>
+
+            <h3>🚑 Équipements</h3>
+
+            <label>Ambulances</label>
+            <input>
+
+            <label>⚡ Générateurs</label>
+            <input>
+
+            <h3>💻 Système numérique</h3>
+
+            <label>Ordinateurs</label>
+            <input>
+
+            <label>🌐 Internet</label>
+            <input>
+
+            <label>🖥️ Logiciel hospitalier</label>
+            <input>
+
+        </div>
+
+        <!-- 6 VALIDATION -->
+        <div class="section">
+
+            <label><input type="checkbox"> Déclaration sur l’honneur</label>
+            <label><input type="checkbox"> Exactitude des informations</label>
+            <label><input type="checkbox"> Acceptation des conditions</label>
+
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="btns" id="buttons">
+
+            <button type="button" class="btn blue">💾 Brouillon</button>
+            <button type="submit" class="btn green">✅ Soumettre</button>
+            <button type="reset" class="btn red">🔁 Réinitialiser</button>
+
+        </div>
+<!-- 🔙 RETOUR -->
+<button type="button" class="btn-back" onclick="history.back()">
+    <i class="fa-solid fa-arrow-left"></i>
+    Retour
+</button>
+    </form>
+
+</div>
+</div>
+
+<script>
+function show(i){
+    let sections = document.querySelectorAll('.section');
+    let tabs = document.querySelectorAll('.tab');
+    let buttons = document.getElementById('buttons');
+
+    sections.forEach(s => s.classList.remove('active'));
+    tabs.forEach(t => t.classList.remove('active'));
+
+    sections[i].classList.add('active');
+    tabs[i].classList.add('active');
+
+    buttons.style.display = (i === 5) ? "flex" : "none";
+}
+
+/* PREVIEW LOGO */
+function previewLogo(event){
+    let reader = new FileReader();
+    reader.onload = function(){
+        let img = document.getElementById('logoPreview');
+        img.src = reader.result;
+        img.style.display = "block";
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+/* PREVIEW PHOTO */
+function previewPhoto(event){
+    let reader = new FileReader();
+    reader.onload = function(){
+        let img = document.getElementById('photoPreview');
+        img.src = reader.result;
+        img.style.display = "block";
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+/* TOGGLE SERVICES */
+function toggleAllServices(el){
+    let services = document.querySelectorAll('.service');
+    services.forEach(s => {
+        s.checked = el.checked;
+        s.disabled = el.checked;
+    });
+}
+</script>
+
+</body>
+</html>

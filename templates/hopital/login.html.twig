@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion - eSanté Mali</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+
+            background: url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* 🌫 overlay */
+        .overlay {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.65);
+            padding: 30px;
+        }
+
+        /* 🧊 glass container */
+        .container {
+            width: 100%;
+            max-width: 850px;
+            padding: 45px;
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+            color: white;
+
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        /* 🔷 header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            height: 70px;
+            background: rgba(255,255,255,0.12);
+            padding: 6px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 10px 0 25px 0;
+            font-size: 26px;
+        }
+
+        /* 🧾 form */
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a8ffce;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 12px 12px 38px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+
+            background: rgba(255,255,255,0.15);
+            color: white;
+
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border: 1px solid #27ae60;
+            background: rgba(255,255,255,0.22);
+        }
+
+        input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* 🔐 button */
+        .btn {
+            width: 100%;
+            padding: 13px;
+            background: rgba(39,174,96,0.85);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: rgba(39,174,96,1);
+            transform: scale(1.02);
+        }
+
+        /* 🔗 links */
+        .links {
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        .links a {
+            color: #a8ffce;
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 14px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* 🔙 back button */
+        .back {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .back a {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 8px;
+
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: 0.3s;
+        }
+
+        .back a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .icon {
+            margin-right: 6px;
+            color: #a8ffce;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="container">
+
+        <!-- LOGOS -->
+        <div class="header">
+            <img src="{{ asset('images/mali.jpeg') }}" class="logo" alt="Ministère de la Santé">
+        <h1>
+            Connexion eSanté Mali
+        </h1>
+            <img src="{{ asset('images/esante.png') }}" class="logo" alt="eSanté Mali">
+        </div>
+        <!-- FORM -->
+        <form>
+            <div class="form-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" placeholder="Email du directeur">
+            </div>
+
+            <div class="form-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" placeholder="Mot de passe">
+            </div>
+
+            <button class="btn">
+                <i class="fa-solid fa-unlock"></i>
+                Se connecter
+            </button>
+        </form>
+
+        <!-- LINKS -->
+        <div class="links">
+            <a href="/mot-de-passe-oublie">
+                <i class="fa-solid fa-key"></i>
+                Mot de passe oublié
+            </a>
+
+            <a href="/hopital/inscription">
+                <i class="fa-solid fa-user-plus"></i>
+                Inscription
+            </a>
+        </div>
+
+        <!-- BACK BUTTON (CORRIGÉ) -->
+        <div class="back">
+            <a href="/hopital">
+                <i class="fa-solid fa-arrow-left"></i>
+                Retour à la plateforme
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

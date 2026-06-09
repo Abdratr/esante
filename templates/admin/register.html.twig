@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription Admin - eSante Mali</title>
+
+    <link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            min-height: 100vh;
+            background: rgba(0,0,0,0.65);
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            width: 520px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logos img {
+            height: 70px;
+            background: rgba(255,255,255,0.9);
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00e6b8;
+            margin-bottom: 20px;
+        }
+
+        .photo-box {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .photo-box img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00e6b8;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 12px 12px 35px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00e6b8;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg,#00c9a7,#00a8ff);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .back a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="card">
+
+        <!-- LOGOS -->
+        <div class="logos">
+            <img src="{{ asset('images/esante.png') }}" alt="eSante Mali">
+
+            <h1>Inscription</h1>
+
+            <img src="{{ asset('images/mali.jpeg') }}" alt="Ministère de la Santé">
+        </div>
+
+        <!-- PHOTO -->
+        <div class="photo-box">
+            <img id="preview" src="{{ asset('images/avatar.png') }}" alt="Photo de profil">
+        </div>
+
+        <!-- ✅ FORM CORRIGÉ -->
+        <form method="post" enctype="multipart/form-data">
+
+            <input type="file" name="photo" accept="image/*" onchange="loadFile(event)">
+
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" name="nom_complet" placeholder="Nom complet" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-calendar"></i>
+                <input type="date" name="date_naissance">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="text" name="lieu_naissance" placeholder="Lieu de naissance">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-house"></i>
+                <input type="text" name="domicile" placeholder="Domicile">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" name="telephone" placeholder="Téléphone (+223...)">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" name="password" placeholder="Mot de passe" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" name="confirm_password" placeholder="Confirmer mot de passe" required>
+            </div>
+
+            <button class="btn">
+                <i class="fa-solid fa-check"></i>
+                S’inscrire
+            </button>
+
+        </form>
+
+        <!-- BACK -->
+        <div class="back">
+            <a href="{{ path('admin_login') }}">
+                <i class="fa-solid fa-arrow-left"></i>
+                Retour à la connexion
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SCRIPT PREVIEW -->
+<script>
+function loadFile(event) {
+    const image = document.getElementById('preview');
+    image.src = URL.createObjectURL(event.target.files[0]);
+
+    image.onload = function () {
+        URL.revokeObjectURL(image.src);
+    }
+}
+</script>
+
+</body>
+</html>

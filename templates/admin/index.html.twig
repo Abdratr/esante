@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - eSante Mali</title>
+<link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
+    <!-- Font Awesome (icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .overlay {
+            height: 100vh;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 900px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 25px;
+        }
+
+        .logos img {
+            height: 85px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .logos img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 15px;
+            color: #00e6b8;
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        .btn-login {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #00c9a7, #00a8ff);
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-login i {
+            margin-right: 8px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .welcome-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(39, 174, 96, 0.9);
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            animation: fadeOut 5s forwards;
+            backdrop-filter: blur(8px);
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 255, 200, 0.15);
+            filter: blur(100px);
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+        }
+
+        .title-icon {
+            margin-right: 10px;
+            color: #00e6b8;
+        }
+
+        .text-icon {
+            margin-right: 8px;
+            color: #00e6b8;
+        }
+
+        .logos i {
+            position: absolute;
+            font-size: 30px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<!-- message bienvenue -->
+<div class="welcome-message">
+    <i class="fa-solid fa-user-shield"></i>
+    Bienvenue Administrateur eSante Mali — Veuillez vous connecter
+</div>
+
+<div class="overlay">
+
+    <div class="card">
+
+        <!-- logos -->
+        <div class="logos">
+            <img src="{{ asset('images/esante.png') }}" alt="eSante Mali">
+                    <!-- titre -->
+        <h1>
+            eSante Mali
+        </h1>
+            <img src="{{ asset('images/mali.jpeg') }}" alt="Ministère de la Santé Mali">
+        </div>
+        <!-- description -->
+        <p>
+            <i class="fa-solid fa-notes-medical text-icon"></i>
+            eSante Mali est une plateforme numérique moderne dédiée à la gestion intelligente du système de santé.
+            Elle permet de gérer les patients, médecins, rendez-vous, dossiers médicaux et statistiques en temps réel.
+        </p>
+
+        <p style="margin-top:10px;">
+            <i class="fa-solid fa-shield-heart text-icon"></i>
+            Notre objectif est de moderniser et digitaliser le système de santé du Mali pour plus d’efficacité et de transparence.
+        </p>
+
+        <!-- bouton -->
+        <a href="{{ path('admin_login') }}" class="btn-login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Se connecter
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

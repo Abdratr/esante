@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription réussie - eSante Mali</title>
+
+    <link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* 🌄 fond FIXE */
+        body {
+            background: url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* 🌑 overlay qui prend toute la page */
+        .overlay {
+            min-height: 100vh;
+            background: rgba(0,0,0,0.65);
+            display: flex;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        /* 📦 CARD SIMPLE (PAS DE SCROLL INTERNE) */
+        .card {
+            width: 520px;
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 35px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        /* LOGOS */
+        .logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .logos img {
+            height: 65px;
+            background: rgba(255,255,255,0.9);
+            padding: 6px;
+            border-radius: 10px;
+        }
+
+        /* SUCCESS ICON */
+        .icon-success {
+            font-size: 60px;
+            color: #00e6b8;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00e6b8;
+            margin-bottom: 15px;
+        }
+
+        /* PHOTO */
+        .photo {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .photo img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00e6b8;
+        }
+
+        /* INFOS */
+        .info {
+            margin-top: 15px;
+        }
+
+        .info p {
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        .info i {
+            color: #00e6b8;
+            width: 20px;
+        }
+
+        /* BUTTON */
+        .btn {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg,#00c9a7,#00a8ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="card">
+
+        <!-- LOGOS -->
+        <div class="logos">
+            <img src="{{ asset('images/esante.png') }}" alt="eSante Mali">
+            <img src="{{ asset('images/mali.jpeg') }}" alt="Ministère de la Santé">
+        </div>
+
+        <!-- ICON -->
+        <div class="icon-success">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <h1>Inscription réussie 🎉</h1>
+
+        <!-- PHOTO -->
+        <div class="photo">
+            {% if admin.photo %}
+                <img src="{{ asset(admin.photo) }}" alt="Photo admin">
+            {% else %}
+                <img src="{{ asset('images/avatar.png') }}" alt="Avatar">
+            {% endif %}
+        </div>
+
+        <!-- INFOS -->
+        <div class="info">
+
+            <p><i class="fa-solid fa-user"></i> Nom : {{ admin.nomComplet }}</p>
+
+            <p><i class="fa-solid fa-envelope"></i> Email : {{ admin.email }}</p>
+
+            <p><i class="fa-solid fa-phone"></i> Téléphone : {{ admin.telephone }}</p>
+
+            <p><i class="fa-solid fa-house"></i> Domicile : {{ admin.domicile }}</p>
+
+            <p><i class="fa-solid fa-location-dot"></i> Lieu naissance : {{ admin.lieuNaissance }}</p>
+
+            <p><i class="fa-solid fa-calendar"></i> Date naissance :
+                {{ admin.dateNaissance ? admin.dateNaissance|date('d/m/Y') : 'N/A' }}
+            </p>
+
+        </div>
+
+        <!-- MESSAGE -->
+        <p style="margin-top:15px; text-align:center; opacity:0.9;">
+            Vous pouvez maintenant vous connecter à votre compte administrateur.
+        </p>
+
+        <!-- BUTTON -->
+        <a href="{{ path('admin_login') }}" class="btn">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Se connecter
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
