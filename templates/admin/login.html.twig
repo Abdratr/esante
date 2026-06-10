@@ -2,15 +2,16 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion Admin - eSante Mali</title>
 
     <link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
+
         *{
             margin:0;
             padding:0;
@@ -19,32 +20,36 @@
         }
 
         body{
-            background:url('{{ asset("images/fond.png") }}')
-            no-repeat center center fixed;
-            background-size:cover;
             min-height:100vh;
+            background:url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
+            background-size:cover;
             overflow-x:hidden;
         }
 
         .overlay{
-            background:rgba(0,0,0,0.65);
             min-height:100vh;
-            padding:80px 20px;
+            background:rgba(0,0,0,.65);
             display:flex;
             justify-content:center;
             align-items:center;
+            padding:20px;
         }
 
         .card{
-            background:rgba(255,255,255,0.10);
+            width:100%;
+            max-width:500px;
+            padding:40px;
+
+            background:rgba(255,255,255,.10);
             backdrop-filter:blur(15px);
             -webkit-backdrop-filter:blur(15px);
-            padding:40px;
-            border-radius:20px;
-            width:450px;
+
+            border-radius:25px;
+
             color:white;
-            text-align:center;
-            box-shadow:0 8px 32px rgba(0,0,0,0.3);
+
+            box-shadow:0 8px 32px rgba(0,0,0,.3);
+
             animation:fadeIn 1s ease;
         }
 
@@ -61,85 +66,115 @@
 
         .logos{
             display:flex;
-            justify-content:space-between;
+            justify-content:center;
             align-items:center;
-            margin-bottom:25px;
+            gap:20px;
+            flex-wrap:wrap;
+            margin-bottom:20px;
         }
 
         .logos img{
-            height:70px;
-            background:rgba(255,255,255,0.9);
+            width:75px;
+            height:75px;
+            object-fit:cover;
+
+            background:white;
+            border-radius:50%;
             padding:8px;
-            border-radius:10px;
+        }
+
+        .title{
+            text-align:center;
         }
 
         h1{
             color:#00e6b8;
-            font-size:26px;
+            font-size:28px;
+            margin-bottom:8px;
+        }
+
+        .subtitle{
+            color:#ffd54f;
+            font-size:15px;
         }
 
         .input-group{
-            margin:15px 0;
+            margin-top:18px;
             position:relative;
         }
 
         .input-group i{
             position:absolute;
-            left:12px;
             top:50%;
+            left:15px;
             transform:translateY(-50%);
             color:#00e6b8;
         }
 
         input{
             width:100%;
-            padding:12px 12px 12px 38px;
+            padding:14px 14px 14px 45px;
             border:none;
-            border-radius:8px;
             outline:none;
+            border-radius:12px;
+            font-size:15px;
+        }
+
+        input:focus{
+            box-shadow:0 0 10px rgba(0,230,184,.5);
         }
 
         .btn{
             width:100%;
-            padding:12px;
-            margin-top:15px;
+            margin-top:25px;
+            padding:15px;
+
             border:none;
-            border-radius:8px;
-            background:linear-gradient(135deg,#00c9a7,#00a8ff);
+            border-radius:50px;
+
+            background:linear-gradient(135deg,#009966,#00a8ff);
+
             color:white;
+
             font-size:16px;
+            font-weight:600;
+
             cursor:pointer;
-            transition:.3s;
+
+            transition:.4s;
         }
 
         .btn:hover{
-            transform:scale(1.03);
+            transform:translateY(-3px);
         }
 
         .links{
-            margin-top:20px;
+            margin-top:25px;
+            text-align:center;
         }
 
         .links a{
             display:block;
-            margin:8px 0;
+            margin-top:12px;
+
             color:#00e6b8;
             text-decoration:none;
-            font-size:14px;
+
+            transition:.3s;
         }
 
         .links a:hover{
-            text-decoration:underline;
+            color:white;
         }
 
         .back{
-            margin-top:20px;
+            margin-top:25px;
+            text-align:center;
         }
 
         .back a{
             color:white;
             text-decoration:none;
-            font-size:14px;
         }
 
         .back a:hover{
@@ -148,23 +183,56 @@
 
         .error-box{
             background:#dc3545;
-            color:white;
-            padding:10px;
-            border-radius:8px;
-            margin-bottom:15px;
+            padding:12px;
+            border-radius:10px;
+            margin-top:20px;
+            text-align:center;
         }
 
-        @media(max-width:500px){
+        /* Tablette */
+
+        @media(max-width:768px){
+
             .card{
-                width:100%;
+                padding:30px;
+            }
+
+        }
+
+        /* Smartphone */
+
+        @media(max-width:576px){
+
+            .card{
+                padding:25px 18px;
             }
 
             .logos{
                 flex-direction:column;
-                gap:10px;
+                gap:15px;
             }
+
+            .logos img{
+                width:65px;
+                height:65px;
+            }
+
+            h1{
+                font-size:24px;
+            }
+
+            .subtitle{
+                font-size:14px;
+            }
+
+            input{
+                font-size:14px;
+            }
+
         }
+
     </style>
+
 </head>
 
 <body>
@@ -174,10 +242,16 @@
     <div class="card">
 
         <div class="logos">
-            <img src="{{ asset('images/esante.png') }}"
-                 alt="eSante Mali">
 
-            <h1>Connexion</h1>
+            <img src="{{ asset('images/esante.png') }}" alt="eSante Mali">
+
+            <div class="title">
+                <h1>Connexion Admin</h1>
+
+                <div class="subtitle">
+                    eSante Mali
+                </div>
+            </div>
 
             <img src="{{ asset('images/mali.jpeg') }}"
                  alt="Ministère de la Santé">
@@ -185,6 +259,7 @@
 
         {% if error %}
             <div class="error-box">
+                <i class="fa-solid fa-circle-exclamation"></i>
                 Email ou mot de passe incorrect.
             </div>
         {% endif %}
@@ -199,28 +274,25 @@
                 <i class="fa-solid fa-envelope"></i>
 
                 <input
-                    type="email"
-                    name="_username"
-                    value="{{ last_username }}"
-                    placeholder="Email administrateur"
-                    required
-                    autofocus
-                >
+                        type="email"
+                        name="_username"
+                        value="{{ last_username }}"
+                        placeholder="Email administrateur"
+                        required>
             </div>
 
             <div class="input-group">
                 <i class="fa-solid fa-lock"></i>
 
                 <input
-                    type="password"
-                    name="_password"
-                    placeholder="Mot de passe"
-                    required
-                >
+                        type="password"
+                        name="_password"
+                        placeholder="Mot de passe"
+                        required>
             </div>
 
             <button type="submit" class="btn">
-                <i class="fa-solid fa-shield-halved"></i>
+                <i class="fa-solid fa-right-to-bracket"></i>
                 Se connecter
             </button>
 
@@ -230,7 +302,7 @@
 
             <a href="{{ path('admin_register') }}">
                 <i class="fa-solid fa-user-plus"></i>
-                Créer un compte admin
+                Créer un compte administrateur
             </a>
 
             <a href="{{ path('admin_forgot_password') }}">
@@ -241,10 +313,12 @@
         </div>
 
         <div class="back">
+
             <a href="{{ path('admin_index') }}">
                 <i class="fa-solid fa-arrow-left"></i>
-                Retour à l’accueil
+                Retour à l'accueil
             </a>
+
         </div>
 
     </div>

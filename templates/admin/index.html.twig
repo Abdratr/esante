@@ -2,160 +2,289 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - eSante Mali</title>
-<link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
-    <!-- Font Awesome (icônes) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
         }
 
-        body {
-            height: 100vh;
-            background: url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
-            background-size: cover;
-            overflow: hidden;
+        body{
+            min-height:100vh;
+            background:url('{{ asset("images/fond.png") }}') center center no-repeat fixed;
+            background-size:cover;
+            overflow-x:hidden;
         }
 
-        .overlay {
-            height: 100vh;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.55);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px;
+        .overlay{
+            min-height:100vh;
+            background:rgba(0,0,0,.60);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 900px;
-            color: white;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            animation: fadeIn 1.2s ease-in-out;
+        .card{
+            width:100%;
+            max-width:950px;
+            padding:45px;
+            text-align:center;
+            color:white;
+
+            background:rgba(255,255,255,.08);
+            backdrop-filter:blur(15px);
+            -webkit-backdrop-filter:blur(15px);
+
+            border-radius:25px;
+
+            box-shadow:
+                    0 8px 32px rgba(0,0,0,.3);
+
+            animation:fadeIn 1s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(40px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
         }
 
-        .logos {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 25px;
+        /* Logos */
+
+        .logos{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:40px;
+            flex-wrap:wrap;
+            margin-bottom:20px;
         }
 
-        .logos img {
-            height: 85px;
-            background: rgba(255,255,255,0.9);
-            padding: 10px;
-            border-radius: 12px;
-            transition: transform 0.3s;
+        .logos img{
+            width:90px;
+            height:90px;
+            object-fit:cover;
+
+            background:white;
+            padding:8px;
+            border-radius:50%;
+
+            transition:.4s;
         }
 
-        .logos img:hover {
-            transform: scale(1.05);
+        .logos img:hover{
+            transform:scale(1.05);
         }
 
-        h1 {
-            font-size: 34px;
-            margin-bottom: 15px;
-            color: #00e6b8;
+        .title{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
         }
 
-        p {
-            font-size: 17px;
-            line-height: 1.7;
-            opacity: 0.95;
+        h1{
+            color:#00e6b8;
+            font-size:40px;
+            margin-bottom:8px;
         }
 
-        .btn-login {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 14px 32px;
-            background: linear-gradient(135deg, #00c9a7, #00a8ff);
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        .slogan{
+            color:#ffd54f;
+            font-size:18px;
         }
 
-        .btn-login i {
-            margin-right: 8px;
+        p{
+            margin-top:20px;
+            font-size:17px;
+            line-height:1.9;
+            color:#f5f5f5;
         }
 
-        .btn-login:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        .text-icon{
+            color:#00e6b8;
+            margin-right:8px;
         }
 
-        .welcome-message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(39, 174, 96, 0.9);
-            padding: 15px 20px;
-            border-radius: 10px;
-            color: white;
-            font-size: 14px;
-            animation: fadeOut 5s forwards;
-            backdrop-filter: blur(8px);
+        /* bouton */
+
+        .btn-login{
+            display:inline-block;
+            margin-top:35px;
+            padding:15px 40px;
+
+            text-decoration:none;
+            color:white;
+
+            font-size:18px;
+            font-weight:600;
+
+            border-radius:50px;
+
+            background:linear-gradient(135deg,#009966,#00a8ff);
+
+            transition:.4s;
+
+            box-shadow:0 10px 25px rgba(0,0,0,.3);
         }
 
-        @keyframes fadeOut {
-            0% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { opacity: 0; visibility: hidden; }
+        .btn-login:hover{
+            transform:translateY(-5px);
         }
 
-        .glow {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: rgba(0, 255, 200, 0.15);
-            filter: blur(100px);
-            border-radius: 50%;
-            top: 10%;
-            left: 10%;
+        .btn-login i{
+            margin-right:10px;
         }
 
-        .title-icon {
-            margin-right: 10px;
-            color: #00e6b8;
+        /* message */
+
+        .welcome-message{
+            position:fixed;
+            top:20px;
+            right:20px;
+
+            background:rgba(39,174,96,.95);
+
+            padding:15px 20px;
+
+            border-radius:10px;
+
+            color:white;
+
+            z-index:999;
+
+            animation:fadeOut 5s forwards;
         }
 
-        .text-icon {
-            margin-right: 8px;
-            color: #00e6b8;
+        @keyframes fadeOut{
+
+            0%{
+                opacity:1;
+            }
+
+            80%{
+                opacity:1;
+            }
+
+            100%{
+                opacity:0;
+                visibility:hidden;
+            }
+
         }
 
-        .logos i {
-            position: absolute;
-            font-size: 30px;
-            color: white;
+        /* effet lumineux */
+
+        .glow{
+            position:absolute;
+            width:300px;
+            height:300px;
+
+            background:rgba(0,255,200,.15);
+
+            border-radius:50%;
+
+            filter:blur(120px);
+
+            top:10%;
+            left:10%;
         }
+
+        /* TABLETTE */
+
+        @media(max-width:768px){
+
+            .card{
+                padding:30px;
+            }
+
+            h1{
+                font-size:32px;
+            }
+
+            p{
+                font-size:15px;
+            }
+
+            .btn-login{
+                width:100%;
+            }
+
+        }
+
+        /* SMARTPHONE */
+
+        @media(max-width:576px){
+
+            .card{
+                padding:25px 18px;
+            }
+
+            .logos{
+                flex-direction:column;
+                gap:20px;
+            }
+
+            .logos img{
+                width:70px;
+                height:70px;
+            }
+
+            h1{
+                font-size:26px;
+            }
+
+            .slogan{
+                font-size:15px;
+            }
+
+            p{
+                font-size:14px;
+                line-height:1.8;
+            }
+
+            .btn-login{
+                width:100%;
+                padding:15px;
+                font-size:16px;
+            }
+
+            .welcome-message{
+                top:10px;
+                left:10px;
+                right:10px;
+                text-align:center;
+                font-size:13px;
+            }
+
+        }
+
     </style>
+
 </head>
 
 <body>
 
 <div class="glow"></div>
 
-<!-- message bienvenue -->
+<!-- Message de bienvenue -->
+
 <div class="welcome-message">
     <i class="fa-solid fa-user-shield"></i>
     Bienvenue Administrateur eSante Mali — Veuillez vous connecter
@@ -165,31 +294,50 @@
 
     <div class="card">
 
-        <!-- logos -->
         <div class="logos">
-            <img src="{{ asset('images/esante.png') }}" alt="eSante Mali">
-                    <!-- titre -->
-        <h1>
-            eSante Mali
-        </h1>
-            <img src="{{ asset('images/mali.jpeg') }}" alt="Ministère de la Santé Mali">
+
+            <img src="{{ asset('images/esante.png') }}"
+                 alt="eSante Mali">
+
+            <div class="title">
+
+                <h1>eSante Mali</h1>
+
+                <div class="slogan">
+                    Ensemble pour une santé numérique au Mali
+                </div>
+
+            </div>
+
+            <img src="{{ asset('images/mali.jpeg') }}"
+                 alt="Ministère de la Santé Mali">
+
         </div>
-        <!-- description -->
+
         <p>
             <i class="fa-solid fa-notes-medical text-icon"></i>
-            eSante Mali est une plateforme numérique moderne dédiée à la gestion intelligente du système de santé.
-            Elle permet de gérer les patients, médecins, rendez-vous, dossiers médicaux et statistiques en temps réel.
+
+            eSante Mali est une plateforme numérique moderne dédiée à la
+            gestion intelligente du système de santé. Elle facilite la gestion
+            des patients, des médecins, des rendez-vous, des dossiers médicaux
+            et fournit des statistiques en temps réel.
         </p>
 
-        <p style="margin-top:10px;">
+        <p>
             <i class="fa-solid fa-shield-heart text-icon"></i>
-            Notre objectif est de moderniser et digitaliser le système de santé du Mali pour plus d’efficacité et de transparence.
+
+            Notre ambition est de contribuer à la modernisation et à la
+            digitalisation du système de santé malien afin d'offrir des services
+            plus efficaces, accessibles et transparents.
         </p>
 
-        <!-- bouton -->
-        <a href="{{ path('admin_login') }}" class="btn-login">
+        <a href="{{ path('admin_login') }}"
+           class="btn-login">
+
             <i class="fa-solid fa-right-to-bracket"></i>
+
             Se connecter
+
         </a>
 
     </div>
