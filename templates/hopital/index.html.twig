@@ -1,124 +1,159 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>eSanté Mali - Hôpitaux</title>
     <link rel="icon" type="image/png" href="{{ asset('images/esante.png') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
+    background-size: cover;
+}
 
-            /* 🌄 Fond fixe */
-            background: url('{{ asset("images/fond.png") }}') no-repeat center center fixed;
-            background-size: cover;
-        }
+/* overlay */
+.overlay {
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
-        /* 🌫️ Overlay global */
-        .overlay {
-            min-height: 100vh;
-            background: rgba(0, 0, 0, 0.55);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-        }
+/* container */
+.container {
+    width: 100%;
+    max-width: 950px;
+    padding: 25px;
+    border-radius: 16px;
 
-        /* 🧊 Glass container */
-        .container {
-            width: 100%;
-            max-width: 950px;
-            padding: 40px;
-            border-radius: 16px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+}
 
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            color: white;
-        }
+/* header responsive */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    text-align: center;
+}
 
-        /* 🔷 Header logos */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
+/* logos */
+.logo {
+    height: 60px;
+    max-width: 100px;
+    background: rgba(255,255,255,0.2);
+    padding: 6px;
+    border-radius: 10px;
+}
 
-        .logo {
-            height: 70px;
-            background: rgba(255,255,255,0.2);
-            padding: 8px;
-            border-radius: 10px;
-        }
+/* title */
+h1 {
+    font-size: 22px;
+    text-align: center;
+    margin: 10px 0;
+}
 
-        /* 🏥 Title */
-        h1 {
-            text-align: center;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
+/* welcome */
+.welcome {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        /* 👋 Welcome */
-        .welcome {
-            font-size: 18px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: rgba(255,255,255,0.9);
-        }
+/* boxes */
+.box {
+    margin-top: 15px;
+    padding: 15px;
 
-        /* 📦 Glass boxes */
-        .box {
-            margin-top: 20px;
-            padding: 18px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
 
-            background: rgba(255, 255, 255, 0.10);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
 
-            backdrop-filter: blur(10px);
-        }
+/* text */
+.description {
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+}
 
-        .description {
-            line-height: 1.7;
-            color: rgba(255,255,255,0.9);
-        }
+/* button */
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 18px;
 
-        /* 🔐 Button */
-        .btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 14px 22px;
+    background: rgba(39, 174, 96, 0.8);
+    color: white;
 
-            background: rgba(39, 174, 96, 0.8);
-            color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
 
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
+    transition: 0.3s;
+}
 
-            transition: 0.3s;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+.btn:hover {
+    background: rgba(39, 174, 96, 1);
+    transform: scale(1.05);
+}
 
-        .btn:hover {
-            background: rgba(39, 174, 96, 1);
-            transform: scale(1.05);
-        }
+/* icon */
+.icon {
+    margin-right: 6px;
+    color: #a8ffce;
+}
 
-        /* 🎯 Icônes */
-        .icon {
-            margin-right: 8px;
-            color: #a8ffce;
-        }
+/* 📱 MOBILE */
+@media (max-width: 768px) {
 
-    </style>
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .welcome {
+        font-size: 14px;
+    }
+
+    .logo {
+        height: 45px;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
 </head>
 
 <body>
