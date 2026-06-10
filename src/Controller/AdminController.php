@@ -136,4 +136,9 @@ class AdminController extends AbstractController
             'Cette méthode est interceptée par le firewall logout.'
         );
     }
+    #[Route('/', name: 'home')]
+public function home(): Response
+{
+    return $this->redirectToRoute('admin_index');
+}
 }
